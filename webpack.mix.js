@@ -162,6 +162,15 @@ mix.js("resources/js/app.js", "public/js")
     .setResourceRoot("/public")
     .setPublicPath("public");
 
+mix.webpackConfig({
+    resolve: {
+        extensions: [".js", ".vue", ".json"],
+        alias: {
+            "@": __dirname + "/resources/js",
+        },
+    },
+});
+
 /*
  |--------------------------------------------------------------------------
  | Browsersync Reloading
