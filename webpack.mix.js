@@ -1,16 +1,7 @@
-import { EnvironmentPlugin } from "webpack";
-import {
-    options as _options,
-    webpackConfig,
-    sass,
-    js,
-    copy,
-    scripts,
-    version,
-    browserSync,
-} from "laravel-mix";
-import { sync } from "glob";
-import { join } from "path";
+const { EnvironmentPlugin } = require("webpack");
+const mix = require("laravel-mix");
+const glob = require("glob");
+const path = require("path");
 
 /*
  |--------------------------------------------------------------------------
@@ -18,7 +9,7 @@ import { join } from "path";
  |--------------------------------------------------------------------------
  */
 
-_options({
+mix.options({
     resourceRoot: process.env.ASSET_URL || undefined,
     processCssUrls: false,
     postCss: [require("autoprefixer")],
@@ -30,7 +21,7 @@ _options({
  |--------------------------------------------------------------------------
  */
 
-webpackConfig({
+mix.webpackConfig({
     output: {
         publicPath: process.env.ASSET_URL || undefined,
         libraryTarget: "umd",
@@ -47,9 +38,9 @@ webpackConfig({
             {
                 test: /\.es6$|\.js$/,
                 include: [
-                    join(__dirname, "node_modules/bootstrap/"),
-                    join(__dirname, "node_modules/popper.js/"),
-                    join(__dirname, "node_modules/shepherd.js/"),
+                    path.join(__dirname, "node_modules/bootstrap/"),
+                    path.join(__dirname, "node_modules/popper.js/"),
+                    path.join(__dirname, "node_modules/shepherd.js/"),
                 ],
                 loader: "babel-loader",
                 options: {
@@ -93,7 +84,7 @@ webpackConfig({
  */
 
 function mixAssetsDir(query, cb) {
-    (sync("resources/assets/" + query) || []).forEach((f) => {
+    (glob.sync("resources/assets/" + query) || []).forEach((f) => {
         f = f.replace(/[\\\/]+/g, "/");
         cb(f, f.replace("resources/assets/", "public/assets/"));
     });
@@ -110,38 +101,38 @@ const sassOptions = {
 };
 
 // Core stylesheets
-mixAssetsDir("vendor/scss/**/!(_)*.scss", (src, dest) =>
-    sass(
-        src,
-        dest
-            .replace(/(\\|\/)scss(\\|\/)/, "$1css$2")
-            .replace(/\.scss$/, ".css"),
-        { sassOptions }
-    )
-);
+// mixAssetsDir("vendor/scss/**/!(_)*.scss", (src, dest) =>
+//     mix.sass(
+//         src,
+//         dest
+//             .replace(/(\\|\/)scss(\\|\/)/, "$1css$2")
+//             .replace(/\.scss$/, ".css"),
+//         { sassOptions }
+//     )
+// );
 
 // Core javascripts
-mixAssetsDir("vendor/js/**/*.js", (src, dest) => js(src, dest));
+// mixAssetsDir("vendor/js/**/*.js", (src, dest) => mix.js(src, dest));
 
 // Libs
-mixAssetsDir("vendor/libs/**/*.js", (src, dest) => js(src, dest));
-mixAssetsDir("vendor/libs/**/!(_)*.scss", (src, dest) =>
-    sass(src, dest.replace(/\.scss$/, ".css"), { sassOptions })
-);
-mixAssetsDir("vendor/libs/**/*.{png,jpg,jpeg,gif}", (src, dest) =>
-    copy(src, dest)
-);
+// mixAssetsDir("vendor/libs/**/*.js", (src, dest) => mix.js(src, dest));
+// mixAssetsDir("vendor/libs/**/!(_)*.scss", (src, dest) =>
+//     mix.sass(src, dest.replace(/\.scss$/, ".css"), { sassOptions })
+// );
+// mixAssetsDir("vendor/libs/**/*.{png,jpg,jpeg,gif}", (src, dest) =>
+//     mix.copy(src, dest)
+// );
 
 // Img
-mixAssetsDir("assets/img/*/*", (src, dest) => copy(src, dest));
+mixAssetsDir("assets/img/*/*", (src, dest) => mix.copy(src, dest));
 
 // Plugin
-mixAssetsDir("plugins/*/*", (src, dest) => copy(src, dest));
+mixAssetsDir("assets/plugins/*/*", (src, dest) => mix.copy(src, dest));
 
 // Fonts
-mixAssetsDir("assets/fonts/*/*", (src, dest) => copy(src, dest));
-mixAssetsDir("assets/fonts/!(_)*.scss", (src, dest) =>
-    sass(
+mixAssetsDir("fonts/*/*", (src, dest) => mix.copy(src, dest));
+mixAssetsDir("fonts/!(_)*.scss", (src, dest) =>
+    mix.sass(
         src,
         dest
             .replace(/(\\|\/)scss(\\|\/)/, "$1css$2")
@@ -156,19 +147,33 @@ mixAssetsDir("assets/fonts/!(_)*.scss", (src, dest) =>
  |--------------------------------------------------------------------------
  */
 
-mixAssetsDir("js/**/*.js", (src, dest) => scripts(src, dest));
-mixAssetsDir("css/**/*.css", (src, dest) => copy(src, dest));
+mixAssetsDir("js/**/*.js", (src, dest) => mix.scripts(src, dest));
+mixAssetsDir("css/**/*.css", (src, dest) => mix.copy(src, dest));
 
-// copy("node_modules/boxicons/fonts/*", "public/assets/vendor/fonts/boxicons");
+// mix.copy(
+//     "node_modules/boxicons/fonts/*",
+//     "public/assets/vendor/fonts/boxicons"
+// );
 
-version();
+mix.version();
 
-js("resources/js/app.js", "public/js")
-    .sass("resources/sass/app.scss", "public/css")
+// mix.js("resources/assets/js/script.js", "public/js");
+// mix.js("resources/assets/js/bootstrap.bundle.min.js", "public/js");
+// mix.js("resources/assets/js/script.js", "public/js");
+// mix.js("resources/assets/js/script.js", "public/js");
+// mix.js("resources/assets/js/script.js", "public/js");
+// mix.js("resources/assets/js/script.js", "public/js");
+
+mix.js("resources/js/app.js", "public/js")
+    .autoload({
+        jquery: ["$", "window.jQuery"],
+        Jquery: ["$", "window.jQuery"],
+    })
+    // .sass("resources/sass/app.scss", "public/css")
     .setResourceRoot("/public")
     .setPublicPath("public");
 
-webpackConfig({
+mix.webpackConfig({
     resolve: {
         extensions: [".js", ".vue", ".json"],
         alias: {
@@ -188,7 +193,7 @@ webpackConfig({
  | Refer official documentation for more information: https://laravel.com/docs/10.x/mix#browsersync-reloading
  */
 
-browserSync("http://127.0.0.1:8000/");
+mix.browserSync("http://127.0.0.1:8000/");
 // mix.browserSync({
 //   proxy: 'http://127.0.0.1:8000/',
 //   files: ['app/**/*.php', 'resources/views/**/*.php', 'public/js/**/*.js', 'public/css/**/*.css'],

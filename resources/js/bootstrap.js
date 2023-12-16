@@ -3,11 +3,12 @@
  * to our Laravel back-end. This library automatically handles sending the
  * CSRF token as a header based on the value of the "XSRF" token cookie.
  */
+import $ from "jquery";
 
-import axios from 'axios';
+import axios from "axios";
 window.axios = axios;
 
-window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+window.axios.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
 
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
@@ -30,3 +31,15 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     forceTLS: (import.meta.env.VITE_PUSHER_SCHEME ?? 'https') === 'https',
 //     enabledTransports: ['ws', 'wss'],
 // });
+
+// import "bootstrap";
+// import * as Popper from "@popperjs/core";
+
+// import("../assets/js/bootstrap.bundle.min.js");
+// // import("../assets/plugins/datatables/datatables.min.js");
+// import("../assets/plugins/select2/js/select2.min.js");
+// import("../assets/plugins/slimscroll/jquery.slimscroll.min.js");
+// // import("../assets/plugins/moment/moment.min.js");
+// import("../assets/js/bootstrap-datetimepicker.min.js");
+// import("../assets/js/jquery-ui.min.js");
+// import("../assets/js/script.js");
