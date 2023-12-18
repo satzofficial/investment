@@ -1,7 +1,7 @@
 {
-    "/js/app.js": "/js/app.js?id=204bb659318cedbc131f435c74dee013",
+    "/js/app.js": "/js/app.js?id=1e2d3adaa03e4238163702a7ad29e1f4",
     "/assets/js/theme-settings.js": "/assets/js/theme-settings.js?id=0c7720a6abadc7f8f9135defd5f6c6e5",
-    "/assets/js/script.js": "/assets/js/script.js?id=2e0c5c48400bc77c59c4b4eea754b882",
+    "/assets/js/script.js": "/assets/js/script.js?id=f4e090d6ef643238110630f574d9a519",
     "/assets/js/owl.carousel.min.js": "/assets/js/owl.carousel.min.js?id=47c357c05cb99cedbac2874840319818",
     "/assets/js/mask.js": "/assets/js/mask.js?id=15cd46347bd3957a7c3c77619bb7d498",
     "/assets/js/layout.js": "/assets/js/layout.js?id=4615bbfd57a17a0170d7caa9bd9f3912",
@@ -15,11 +15,15 @@
     "/assets/js/greedynav.js": "/assets/js/greedynav.js?id=ab0e44755bd3c6f6c6e16c6e73ca2bb3",
     "/assets/js/form-validation.js": "/assets/js/form-validation.js?id=255b4a2eb942e13b1025742e7832185f",
     "/assets/js/feather.min.js": "/assets/js/feather.min.js?id=879cc83dce4bec2ef052aafe8b8f6c08",
+    "/assets/js/bootstrap.js": "/assets/js/bootstrap.js?id=ad2eed3860aec2771d1630651d8fae81",
     "/assets/js/bootstrap.bundle.min.js": "/assets/js/bootstrap.bundle.min.js?id=2b5f300c724ea5eecaef0743949cb919",
     "/assets/js/bootstrap-datetimepicker.min.js": "/assets/js/bootstrap-datetimepicker.min.js?id=ec80168921520ed4d49370f048e0959b",
+    "/assets/js/app.js": "/assets/js/app.js?id=507c6fde04a2dcdf84e176e0fa330207",
+    "/assets/css/toastr.css": "/assets/css/toastr.css?id=812f04521d4b37245c52e2e3ac6fb97b",
     "/assets/css/style.css": "/assets/css/style.css?id=884d55066151f77b12d7672260f7e957",
     "/assets/css/owl.carousel.min.css": "/assets/css/owl.carousel.min.css?id=ae73680de25283ac30eb3732de58576b",
     "/assets/css/feather.css": "/assets/css/feather.css?id=3701ef0c10677ea001b3e0a1ccdba00a",
     "/assets/css/bootstrap.min.css": "/assets/css/bootstrap.min.css?id=33832b5148b77c5ed358bc9a3c405546",
-    "/assets/css/bootstrap-datetimepicker.min.css": "/assets/css/bootstrap-datetimepicker.min.css?id=dccd112584daacbdedc96d4f9da53f9a"
+    "/assets/css/bootstrap-datetimepicker.min.css": "/assets/css/bootstrap-datetimepicker.min.css?id=dccd112584daacbdedc96d4f9da53f9a",
+    "/css/all.css": "/css/all.css?id=e7bd82bc010e622321485af27ea3b129"
 }

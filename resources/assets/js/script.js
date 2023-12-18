@@ -7,7 +7,7 @@ Version      : 1.0
 (function ($) {
     "use strict";
 
-    alert("satzscript");
+    // alert("satzscript");
 
     // Variables declarations
 
@@ -292,12 +292,15 @@ Version      : 1.0
     if ($(".datatable").length > 0) {
         $(".datatable").DataTable({
             bFilter: false,
-            // "scrollX": true,
+            scrollX: true,
             stateSave: true,
             autoWidth: false,
+
             scrollX: "100%",
             sDom: "fBtlpi",
             ordering: true,
+            searching: true,
+            responsive: true,
             columnDefs: [
                 {
                     targets: "no-sort",
@@ -305,20 +308,25 @@ Version      : 1.0
                 },
             ],
             language: {
-                search: " ",
-                sLengthMenu: "_MENU_",
+                // search: "",
+                // sLengthMenu: "_MENU_",
+                slengthMenu: [
+                    [10, 25, 50, -1],
+                    [10, 25, 50, "All"],
+                ],
                 paginate: {
                     next: 'Next <i class=" fa fa-angle-double-right ms-2"></i>',
                     previous:
                         '<i class="fa fa-angle-double-left me-2"></i> Previous',
                 },
             },
-            initComplete: (settings, json) => {
-                $(".dataTables_filter").appendTo("#tableSearch");
-                $(".dataTables_filter").appendTo(".search-input");
-            },
+            // initComplete: (settings, json) => {
+            //     $(".dataTables_filter").appendTo("#tableSearch");
+            //     $(".dataTables_filter").appendTo(".search-input");
+            // },
         });
 
+        // $(".datatable").DataTable();
         $(".modal").on("shown.bs.modal", function (e) {
             $.fn.dataTable
                 .tables({ visible: true, api: true })

@@ -164,11 +164,36 @@ mix.version();
 // mix.js("resources/assets/js/script.js", "public/js");
 // mix.js("resources/assets/js/script.js", "public/js");
 
-mix.js("resources/js/app.js", "public/js")
+mix.js(
+    [
+        // "resources/assets/js/jquery-3.7.1.min.js",
+        // "resources/assets/js/bootstrap.bundle.min.js",
+        // "resources/assets/js/feather.min.js",
+        // "resources/assets/plugins/slimscroll/jquery.slimscroll.min.js",
+        // "resources/assets/plugins/select2/js/select2.min.js",
+        "resources/js/app.js",
+    ],
+    "public/js"
+)
     .autoload({
         jquery: ["$", "window.jQuery"],
         Jquery: ["$", "window.jQuery"],
     })
+    .styles(
+        [
+            // "resources/assets/css/bootstrap.min.css",
+            // "resources/assets/plugins/fontawesome/css/fontawesome.min.css",
+            // "resources/assets/plugins/fontawesome/css/all.min.css",
+            // "resources/assets/plugins/feather/feather.css",
+            // "resources/assets/css/bootstrap-datetimepicker.min.css",
+            // "resources/assets/plugins/select2/css/select2.min.css",
+            // "resources/assets/plugins/intlTelInput/css/intlTelInput.css",
+            "resources/assets/css/style.css",
+            "resources/assets/css/toastr.css",
+            // other stylesheets
+        ],
+        "public/css/all.css"
+    )
     // .sass("resources/sass/app.scss", "public/css")
     .setResourceRoot("/public")
     .setPublicPath("public");
