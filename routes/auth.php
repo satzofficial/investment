@@ -9,8 +9,9 @@ use App\Http\Controllers\Auth\PasswordController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomerController;
-
+use App\Http\Controllers\UnitsController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest')->group(function () {
@@ -72,5 +73,32 @@ Route::middleware('auth')->group(function () {
         Route::post('add-customers-delete/{id?}', [CustomerController::class, 'destroy'])->name('customers.destroy');
 
         Route::post('add-customers-status/{id?}', [CustomerController::class, 'status'])->name('customers.status');
+    });
+
+    Route::group(['name' => 'datatables'], function () {
+        // Items
+        Route::get('units', [UnitsController::class, 'index'])->name('units.index');
+
+        Route::post('units-edit/{id?}', [UnitsController::class, 'edit'])->name('units.edit');
+
+        Route::post('units-store/', [UnitsController::class, 'store'])->name('units.store');
+
+        Route::post('units-update/{id?}', [UnitsController::class, 'update'])->name('units.update');
+
+        Route::post('units-delete/{id?}', [UnitsController::class, 'destroy'])->name('units.destroy');
+    });
+
+
+    Route::group(['name' => 'category'], function () {
+        // Items
+        Route::get('category', [CategoryController::class, 'index'])->name('category.index');
+
+        Route::post('category-edit/{id?}', [CategoryController::class, 'edit'])->name('category.edit');
+
+        Route::post('category-store/', [CategoryController::class, 'store'])->name('category.store');
+
+        Route::post('category-update/{id?}', [CategoryController::class, 'update'])->name('category.update');
+
+        Route::post('category-delete/{id?}', [CategoryController::class, 'destroy'])->name('category.destroy');
     });
 });

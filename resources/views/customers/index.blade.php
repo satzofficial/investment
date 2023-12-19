@@ -237,7 +237,7 @@
                 // Check if the clicked element has the 'clickable' class
                 if (event.target.classList.contains('tableDeleteUrl')) {
                     // Access the data-id attribute of the clicked element
-
+                    alert(dataId);
                     const myForm = document.getElementById('ModelDeleteUrl').action = tableDeleteUrl +
                         '?id=' + dataId;
                 }

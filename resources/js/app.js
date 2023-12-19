@@ -292,7 +292,8 @@ axios.defaults.headers.common["X-CSRF-TOKEN"] = document
 axios.defaults.headers.common["X-Special-CSRF-Token"] = window.customCsrfToken;
 
 // import "bootstrap";
-// import * as Popper from "@popperjs/core";
+import * as Popper from "@popperjs/core";
+window.Popper = Popper;
 
 // import("./bootstrap.bundle.min.js");
 // import("../plugins/datatables/datatables.min.js");

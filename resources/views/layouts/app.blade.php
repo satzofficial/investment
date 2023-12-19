@@ -1,5 +1,5 @@
 @php
-    $routerNameArr = ['customers'];
+    $routerNameArr = ['customers', 'units'];
     $currentRouterName = Route::currentRouteName();
 @endphp
 <!DOCTYPE html>
@@ -64,6 +64,7 @@
 
 <script src="{{ asset(mix('assets/js/jquery-3.7.1.min.js')) }}"></script>
 
+{{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script> --}}
 
 <!-- Bootstrap Core JS -->
 <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
@@ -103,7 +104,6 @@
 {{-- <script src="{{ asset(mix('assets/js/app.js')) }}"></script> --}}
 <script>
     $(document).ready(function() {
-        
 
         // Custom validation method for checking the file extension
         $.validator.addMethod(
@@ -136,6 +136,10 @@
         $(".myform").validate({
             rules: {
                 name: {
+                    required: true
+                },
+
+                symbol: {
                     required: true
                 },
                 phone: {
@@ -209,6 +213,8 @@
                     required: true,
                     email: true,
                 },
+
+
             },
             messages: {
                 name: {
@@ -250,7 +256,7 @@
                             setTimeout(() => {
                                 window.location.href = response.data.redirect;
                             }, 2000);
-                        } else {                            
+                        } else {
                             toastr.error(response.data.msg);
                             // toastr.info(response.data.msg);
                         }
@@ -263,11 +269,12 @@
                             $.each(
                                 error.response.data.errors,
                                 function(key, value) {
-                                    $("#" + key).after(
-                                        '<div class="error-message">' +
-                                        value +
-                                        "</div>"
-                                    );
+                                    // $("#" + key).after(
+                                    //     '<div class="error-message">' +
+                                    //     value +
+                                    //     "</div>"
+                                    // );
+                                    toastr.error(value);
                                 }
                             );
                         }
@@ -281,6 +288,9 @@
             e.preventDefault();
             $("#myform-submit-btn").click();
         });
+
+
+
 
         // var closeIcons = document.getElementsByClassName("show-alert");
         // for (let i = 0; i < closeIcons.length; i++) {
@@ -337,6 +347,7 @@
         // }
     });
 </script>
+
 @include('layouts.flashMessage')
 </body>
 

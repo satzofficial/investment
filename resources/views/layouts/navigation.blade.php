@@ -197,7 +197,15 @@
                     <div class="subscription-logout">
                         <ul>
                             <li class="pb-0">
-                                <a class="dropdown-item" href="login.html">Log Out</a>
+                                {{-- <a class="dropdown-item" href="login.html">Log Out</a> --}}
+                                <!-- Authentication -->
+                                <form method="POST" action="{{ route('logout') }}">
+                                    @csrf
+                                    <x-dropdown-link :href="route('logout')"
+                                        onclick="event.preventDefault(); this.closest('form').submit();">
+                                        {{ __('Log Out') }}
+                                    </x-dropdown-link>
+                                </form>
                             </li>
                         </ul>
                     </div>
@@ -273,7 +281,7 @@
                             <li><a href="product-list.html">Product List</a></li>
                             <li><a href="category.html">Category</a></li>
 
-                            <li><a href="units.html">Units</a></li>
+                            <li><a href="{{ route('units.index') }}">Units</a></li>
                         </ul>
                     </li>
                     <li>
@@ -667,7 +675,7 @@
                         <li><a href="product-list.html">Product List</a></li>
                         <li><a href="category.html">Category</a></li>
 
-                        <li><a href="units.html">Units</a></li>
+                        <li><a href="{{ route('units.index') }}">Units</a></li>
                     </ul>
                 </li>
                 <li>
@@ -983,7 +991,17 @@
                     <a href="settings.html"><i class="fe fe-settings"></i> <span>Settings</span></a>
                 </li>
                 <li>
-                    <a href="login.html"><i class="fe fe-power"></i> <span>Logout</span></a>
+                    <!-- Authentication -->
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+
+                        <x-dropdown-link :href="route('logout')"
+                            onclick="event.preventDefault();
+                                                this.closest('form').submit();">
+                            {{ __('Log Out') }}
+                        </x-dropdown-link>
+                    </form>
+                    {{-- <a href="login.html"><i class="fe fe-power"></i> <span>Logout</span></a> --}}
                 </li>
 
                 <!-- Extras -->

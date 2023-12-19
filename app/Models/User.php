@@ -42,4 +42,10 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function isUser()
+    {
+        // Replace this with your actual logic to determine if the user is an admin
+        return $this->role === 'user'; // Example logic based on a role attribute
+    }
 }
